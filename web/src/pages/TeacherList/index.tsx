@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 
 import PageHeader from '../../components/pageHeader';
 import TeacherItem from '../../components/TeacherItem';
