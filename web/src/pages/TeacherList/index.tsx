@@ -1,4 +1,4 @@
-import React from 'react'; 
+import React, { useState, FormEvent } from 'react'; 
 
 import PageHeader from '../../components/pageHeader';
 import TeacherItem from '../../components/TeacherItem';
@@ -8,11 +8,23 @@ import Select from '../../components/Select';
 import './styles.css';
 
 function TeacherList() {
+    const [subject, setSubject] = useState('');
+    const [week_day, setWeekDay] = useState('');
+    const [time, setTime] = useState('');
+
+    function searchTeachers(e: FormEvent) {
+        e.preventDefault();
+    }
+
     return (
         <div id="page-teacher-list" className="container">
             <PageHeader title="Estes são os proffys disponíveis.">
                 <form id="search-teachers">
-                    <Select name="subject" label="Matéria"
+                    <Select
+                        name="subject"
+                        label="Matéria"
+                        value={subject}
+                        onChange={e => setSubject(e.target.value)}
                         options={[
                             { value: 'Artes', label: 'Artes' },
                             { value: 'Biologia', label: 'Biologia' },
@@ -29,7 +41,11 @@ function TeacherList() {
                             { value: 'Gramática', label: 'Gramática' }
                         ]}
                     />
-                    <Select name="week_day" label="Dia da semana"
+                    <Select
+                        name="week_day"
+                        label="Dia da semana"
+                        value={week_day}
+                        onChange={e => setWeekDay(e.target.value)}
                         options={[
                             { value: '0', label: 'Domingo' },
                             { value: '1', label: 'Segunda-feira' },
@@ -40,7 +56,15 @@ function TeacherList() {
                             { value: '6', label: 'Sábado' },
                         ]}
                     />
-                    <Input type="time" name="time" label="Hora" />
+                    <Input
+                        type="time"
+                        name="time"
+                        label="Hora"
+                        value={time}
+                        onChange={e => setTime(e.target.value)}
+                    />
+
+                    <button type="submit">Buscar</button>
                 </form>
             </PageHeader>
 
